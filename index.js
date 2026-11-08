@@ -50,13 +50,18 @@ const CLASS_DEF = {
     oildiffuser: OilDiffuserAccessory
 };
 
-let Characteristic, PlatformAccessory, Service, Categories, AdaptiveLightingController, UUID;
+let Characteristic, PlatformAccessory, Service, Categories, Perms, AdaptiveLightingController, UUID;
 
 module.exports = function(homebridge) {
     ({
         platformAccessory: PlatformAccessory,
-        hap: {Characteristic, Service, AdaptiveLightingController, Accessory: {Categories}, uuid: UUID}
+        hap: {Characteristic, Service, AdaptiveLightingController, uuid: UUID}
     } = homebridge);
+
+    // Homebridge v2 (HAP-NodeJS v2) exports Categories at the top level; v1 exposes it as Accessory.Categories
+    Categories = homebridge.hap.Categories || homebridge.hap.Accessory.Categories;
+    // Homebridge v2 removed Characteristic.Perms in favour of a top-level Perms export
+    Perms = homebridge.hap.Perms || homebridge.hap.Characteristic.Perms;
 
     homebridge.registerPlatform(PLUGIN_NAME, PLATFORM_NAME, TuyaLan, true);
 };
@@ -66,7 +71,11 @@ class TuyaLan {
         [this.log, this.config, this.api] = [...props];
 
         this.cachedAccessories = new Map();
-        this.api.hap.EnergyCharacteristics = require('./lib/EnergyCharacteristics')(this.api.hap.Characteristic);
+        // Homebridge v2 exposes api.hap as a frozen ES module namespace, so custom additions
+        // cannot be attached to it; build an extended copy for the accessories instead.
+        this.hap = Object.assign({}, this.api.hap, {
+            EnergyCharacteristics: require('./lib/EnergyCharacteristics')(this.api.hap)
+        });
 
         if(!this.config || !this.config.devices) {
             this.log("No devices found. Check that you have specified them in your config.json file.");
@@ -169,7 +178,7 @@ class TuyaLan {
                     if (!characteristic.props ||
                         !Array.isArray(characteristic.props.perms) ||
                         characteristic.props.perms.length !== 3 ||
-                        !(characteristic.props.perms.includes(Characteristic.Perms.WRITE) && characteristic.props.perms.includes(Characteristic.Perms.NOTIFY))
+                        !(characteristic.props.perms.includes(Perms.PAIRED_WRITE) && characteristic.props.perms.includes(Perms.NOTIFY))
                     ) return;
 
                     this.log.info('Marked %s unreachable by faulting Service.%s.%s', accessory.displayName, service.displayName, characteristic.displayName);
