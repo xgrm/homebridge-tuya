@@ -423,6 +423,14 @@
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
                 }
               },
+              "syncDurationToDevice": {
+                "type": "boolean",
+                "default": false,
+                "description": "Write the duration chosen in HomeKit to the countdown DP, so the device runs and stops on its own timer (needs a writable countdown DP).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
+                }
+              },
               "minTemperature": {
                 "type": "integer",
                 "placeholder": "15",
