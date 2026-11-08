@@ -347,7 +347,7 @@
               "fanSpeedValues": {
                 "type": "array",
                 "title": "Fan speed values",
-                "description": "Optional. The device's fan speed values ordered slowest to fastest; the HomeKit slider gets one step per value (e.g. 3, 2, 1, 4 for Low, Med, High, Auto when the device uses 1=High ... 4=Auto).",
+                "description": "Optional. The device's fan speed values ordered slowest to fastest; the HomeKit slider gets one step per value (e.g. 3, 2, 1, 4 for Low, Med, High, Auto when the device uses 1=High ... 4=Auto). Overrides fanSpeedSteps; list each value once.",
                 "items": {
                   "type": "string"
                 },
