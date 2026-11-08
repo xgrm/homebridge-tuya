@@ -331,6 +331,14 @@
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
                 }
               },
+              "cmdAuto": {
+                "type": "string",
+                "placeholder": "auto",
+                "description": "Optional mode value HomeKit's Auto selects (e.g. auto for Feel). Modes other than Cool/Heat are shown as Auto.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
               "cmdHeat": {
                 "type": "string",
                 "placeholder": "HEAT",
