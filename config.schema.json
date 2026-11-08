@@ -334,7 +334,7 @@
               "cmdAuto": {
                 "type": "string",
                 "placeholder": "auto",
-                "description": "Optional mode value HomeKit's Auto selects (e.g. auto for Feel). Modes other than Cool/Heat are shown as Auto.",
+                "description": "Optional mode value HomeKit's Auto selects (e.g. auto for Feel; must start with 'a'). Modes other than Cool/Heat are shown as Auto; in Auto, Home shows a temperature range and both ends set the same temperature.",
                 "condition": {
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
                 }
