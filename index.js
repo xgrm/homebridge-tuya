@@ -244,6 +244,9 @@ class TuyaLan {
     }
 
     removeAccessoryByUUID(uuid) {
-        if (uuid) this.removeAccessory(this.cachedAccessories.get(uuid));
+        if (!uuid) return;
+        // The cache holds a PlatformAccessory until the device is set up, then the accessory wrapper
+        const cached = this.cachedAccessories.get(uuid);
+        this.removeAccessory(cached instanceof PlatformAccessory ? cached : cached && cached.accessory);
     }
 }
