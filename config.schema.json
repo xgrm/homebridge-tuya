@@ -344,6 +344,102 @@
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
                 }
               },
+              "exposeEco": {
+                "type": "boolean",
+                "default": false,
+                "description": "Show an ECO switch (can be used in Apple Home automations).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "dpEco": {
+                "type": "integer",
+                "placeholder": "8",
+                "description": "DP for ECO (default 8).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "exposeSleep": {
+                "type": "boolean",
+                "default": false,
+                "description": "Show a Sleep switch.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "dpSleep": {
+                "type": "integer",
+                "placeholder": "101",
+                "description": "DP for Sleep (default 101).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "exposeTurbo": {
+                "type": "boolean",
+                "default": false,
+                "description": "Show a Turbo switch.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "dpTurbo": {
+                "type": "integer",
+                "placeholder": "102",
+                "description": "DP for Turbo (default 102).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "exposeSwingHorizontal": {
+                "type": "boolean",
+                "default": false,
+                "description": "Show a left-right swing switch (up-down swing is HomeKit Oscillate).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "dpSwingHorizontal": {
+                "type": "integer",
+                "placeholder": "105",
+                "description": "DP for left-right swing (default 105).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "exposeDryMode": {
+                "type": "boolean",
+                "default": false,
+                "description": "Show a Dry mode switch: on = AC on in Dry mode, off = AC off (only if it is in Dry mode).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "cmdDry": {
+                "type": "string",
+                "placeholder": "wet",
+                "description": "Mode value for Dry (default wet).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "exposeFanMode": {
+                "type": "boolean",
+                "default": false,
+                "description": "Show a Fan mode switch: on = AC on in Fan mode, off = AC off (only if it is in Fan mode).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "cmdFan": {
+                "type": "string",
+                "placeholder": "wind",
+                "description": "Mode value for Fan (default wind).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
               "fanSpeedValues": {
                 "type": "array",
                 "title": "Fan speed values",
