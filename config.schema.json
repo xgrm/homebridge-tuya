@@ -119,6 +119,12 @@
                     "enum": [
                       "AirPurifier"
                     ]
+                  },
+                  {
+                    "title": "Water Valve / Timed Switch",
+                    "enum": [
+                      "WaterValve"
+                    ]
                   }
                 ]
               },
@@ -215,7 +221,7 @@
                 "type": "integer",
                 "placeholder": "1",
                 "condition": {
-                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Outlet', 'TWLight', 'RGBTWLight', 'SimpleDimmer','RGBTWOutlet'].includes(model.devices[arrayIndices].type);"
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Outlet', 'TWLight', 'RGBTWLight', 'SimpleDimmer','RGBTWOutlet', 'WaterValve'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "dpBrightness": {
@@ -336,6 +342,55 @@
                 "type": "boolean",
                 "condition": {
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "valveType": {
+                "type": "string",
+                "default": "GENERIC",
+                "oneOf": [
+                  { "title": "Generic valve", "enum": ["GENERIC"] },
+                  { "title": "Irrigation", "enum": ["IRRIGATION"] },
+                  { "title": "Shower head", "enum": ["SHOWER_HEAD"] },
+                  { "title": "Water faucet", "enum": ["WATER_FAUCET"] }
+                ],
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "defaultDuration": {
+                "type": "integer",
+                "placeholder": "600",
+                "minimum": 1,
+                "description": "Run time in seconds when turned on from HomeKit (default 600). Values above 3600 are allowed.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "noTimer": {
+                "type": "boolean",
+                "default": false,
+                "description": "Disable the HomeKit run timer.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "dpRemainingDuration": {
+                "type": "integer",
+                "description": "Optional DP with the device's own countdown (e.g. a water heater auto-off timer). When set, HomeKit shows the device's remaining time.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "remainingDurationUnit": {
+                "type": "string",
+                "default": "minutes",
+                "oneOf": [
+                  { "title": "Minutes", "enum": ["minutes"] },
+                  { "title": "Seconds", "enum": ["seconds"] }
+                ],
+                "description": "Unit of the countdown DP.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "minTemperature": {
