@@ -222,7 +222,7 @@
                 "type": "integer",
                 "placeholder": "2",
                 "condition": {
-                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['TWLight', 'RGBTWLight', 'SimpleDimmer','RGBTWOutlet'].includes(model.devices[arrayIndices].type);"
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['TWLight', 'RGBTWLight', 'SimpleDimmer','RGBTWOutlet', 'FanLight'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "dpColorTemperature": {
@@ -382,8 +382,9 @@
               "dpRotationSpeed": {
                 "type": "integer",
                 "placeholder": "4",
+                "description": "DP for the fan speed. Defaults: Convector 4, Fan/FanLight 3.",
                 "condition": {
-                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Convector'].includes(model.devices[arrayIndices].type);"
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Convector', 'Fan', 'FanLight'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "maxSpeed": {
@@ -398,6 +399,41 @@
                 "placeholder": "1",
                 "condition": {
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['Fan', 'FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "dpFanOn": {
+                "type": "integer",
+                "placeholder": "1",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Fan', 'FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "useStrings": {
+                "type": "boolean",
+                "description": "Send the fan speed as text (default). Untick if the device reports its speed as a number, e.g. a 1-100 % speed DP.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Fan', 'FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "dpLightOn": {
+                "type": "integer",
+                "placeholder": "9",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "useLight": {
+                "type": "boolean",
+                "description": "Expose the light (default on).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "useBrightness": {
+                "type": "boolean",
+                "description": "Expose light brightness (default off).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['FanLight'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "dpChildLock": {
