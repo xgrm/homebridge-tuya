@@ -348,10 +348,30 @@
                 "type": "string",
                 "default": "GENERIC",
                 "oneOf": [
-                  { "title": "Generic valve", "enum": ["GENERIC"] },
-                  { "title": "Irrigation", "enum": ["IRRIGATION"] },
-                  { "title": "Shower head", "enum": ["SHOWER_HEAD"] },
-                  { "title": "Water faucet", "enum": ["WATER_FAUCET"] }
+                  {
+                    "title": "Generic valve",
+                    "enum": [
+                      "GENERIC"
+                    ]
+                  },
+                  {
+                    "title": "Irrigation",
+                    "enum": [
+                      "IRRIGATION"
+                    ]
+                  },
+                  {
+                    "title": "Shower head",
+                    "enum": [
+                      "SHOWER_HEAD"
+                    ]
+                  },
+                  {
+                    "title": "Water faucet",
+                    "enum": [
+                      "WATER_FAUCET"
+                    ]
+                  }
                 ],
                 "condition": {
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
@@ -385,8 +405,18 @@
                 "type": "string",
                 "default": "minutes",
                 "oneOf": [
-                  { "title": "Minutes", "enum": ["minutes"] },
-                  { "title": "Seconds", "enum": ["seconds"] }
+                  {
+                    "title": "Minutes",
+                    "enum": [
+                      "minutes"
+                    ]
+                  },
+                  {
+                    "title": "Seconds",
+                    "enum": [
+                      "seconds"
+                    ]
+                  }
                 ],
                 "description": "Unit of the countdown DP.",
                 "condition": {
