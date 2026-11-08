@@ -423,6 +423,14 @@
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
                 }
               },
+              "exposeSwitch": {
+                "type": "boolean",
+                "default": false,
+                "description": "Also show an on/off switch for this device. Apple Home does not allow valves in automations or scenes; the switch can be used there.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
+                }
+              },
               "syncDurationToDevice": {
                 "type": "boolean",
                 "default": false,
