@@ -426,7 +426,7 @@
               "syncDurationToDevice": {
                 "type": "boolean",
                 "default": false,
-                "description": "Write the duration chosen in HomeKit to the countdown DP, so the device runs and stops on its own timer (needs a writable countdown DP).",
+                "description": "Write the duration chosen in HomeKit to the countdown DP, so the device runs and stops on its own timer (needs a writable countdown DP). Set Default Duration to the device maximum (e.g. 7200 for 120 min) - it is also the longest duration HomeKit offers.",
                 "condition": {
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['WaterValve'].includes(model.devices[arrayIndices].type);"
                 }
