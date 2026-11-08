@@ -408,6 +408,30 @@
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
                 }
               },
+              "exposeFanSpeed": {
+                "type": "boolean",
+                "default": false,
+                "description": "Show a Fan Speed tile (the Home app does not show fan speed on the AC tile). In Dry mode the AC keeps the fan on Auto.",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "exposeFeelMode": {
+                "type": "boolean",
+                "default": false,
+                "description": "Show a Feel mode switch (Feel, Dry and Fan act as one group with Cool/Heat).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "cmdFeel": {
+                "type": "string",
+                "placeholder": "auto",
+                "description": "Mode value for Feel (default auto).",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['AirConditioner'].includes(model.devices[arrayIndices].type);"
+                }
+              },
               "exposeDryMode": {
                 "type": "boolean",
                 "default": false,
